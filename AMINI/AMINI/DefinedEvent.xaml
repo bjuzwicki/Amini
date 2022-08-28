@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:maskededit="clr-namespace:Syncfusion.XForms.MaskedEdit;assembly=Syncfusion.SfMaskedEdit.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Class="AMINI.DefinedEvent">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="check.png" Order="Primary"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="10,10,10,10" BackgroundColor="White" Orientation="Vertical" Spacing="0" x:Name="mainStackLayout" VerticalOptions="StartAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <inputLayout:SfTextInputLayout Hint="Pełna nazwa" ContainerType="Outlined" OutlineCornerRadius="8" UnfocusedColor="Black">
+                    <Editor Keyboard="Text" Text="{Binding Name}" AutoSize="TextChanges"/>
+                </inputLayout:SfTextInputLayout>
+            </Grid>
+            <Grid Padding="0,0,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3.5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <inputLayout:SfTextInputLayout Hint="Skrót" ContainerType="Outlined" OutlineCornerRadius="8" UnfocusedColor="Black">
+                    <Entry Keyboard="Text" Text="{Binding ShortName}" MaxLength="25"/>
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Grid.Column="1" Hint="Sala" ContainerType="Outlined" OutlineCornerRadius="8" UnfocusedColor="Black">
+                    <Entry Keyboard="Numeric" Text="{Binding Room}"/>
+                </inputLayout:SfTextInputLayout>
+            </Grid>
+            <Frame CornerRadius="8" BorderColor="Black" HasShadow="False" x:Name="ListViewFrame" IsClippedToBounds="True">
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Spacing="10">
+                    <Label Text="Lista klientów" FontAttributes="Bold" FontSize="18" TextColor="Black" HorizontalOptions="Center" VerticalOptions="StartAndExpand" x:Name="clientListHeaderTitle"/>
+                    <listview:SfListView x:Name="ListView" ItemSize="30" AutoFitMode="DynamicHeight" AllowSwiping="True">
+                        <listview:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="Black" Padding="0,0,0,1">
+                                    <Grid Padding="5,0,0,5" BackgroundColor="White" VerticalOptions="CenterAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2.5*"/>
+                                            <ColumnDefinition Width="1.5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text ="{Binding FullName}" TextColor="Black" FontSize="14" LineBreakMode="WordWrap"/>
+                                        <Label Grid.Column="1" Text="{Binding PhoneNumber, StringFormat='Tel. {0}'}" TextColor="Black" FontSize="14"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </listview:SfListView.ItemTemplate>
+                    </listview:SfListView>
+                    <Button x:Name="AddOrEditClientListButton" CornerRadius="8" BackgroundColor="#2196F3" FontAttributes="Bold" FontSize="20" BorderColor="Black" BorderWidth="3" Text="Edytuj listę klientów" TextTransform="None" HeightRequest="50" Clicked="AddOrEditClientListButton_Clicked"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

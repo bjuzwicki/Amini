@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:popuplayout="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+             xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AMINI.SchedulerTest"
+             Title="Kalendarz">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="day.png" Order="Primary" Clicked="buttonDay_Clicked" ></ToolbarItem>
+        <ToolbarItem IconImageSource="week.png" Order="Primary" Clicked="buttonWeek_Clicked"></ToolbarItem>
+        <ToolbarItem IconImageSource="month.png" Order="Primary" Clicked="buttonMonth_Clicked"></ToolbarItem>
+        <ToolbarItem IconImageSource="plus.png" Order="Primary" Clicked="buttonAddNewEvent_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <!--Edit popup layout-->
+            
+            <popuplayout:SfPopupLayout x:Name="popupLayoutEdit">
+                <popuplayout:SfPopupLayout.PopupView >
+                    <popuplayout:PopupView AppearanceMode="{Binding AppearanceMode, Mode=OneWay}"
+                                           AcceptButtonText="{Binding AcceptButtonText, Mode=OneWay}"
+                                           DeclineButtonText="{Binding CancelButtonText, Mode=OneWay}"
+                                           HeaderHeight="50"
+                                           AutoSizeMode="Height"
+                                           IsFullScreen="True"
+                                           ShowCloseButton="False">
+                        <!--<popuplayout:PopupView.HeaderTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Title, Mode=OneWay}"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" TextColor="#2196F3"/>
+                            </DataTemplate>
+                        </popuplayout:PopupView.HeaderTemplate>-->
+                        <popuplayout:PopupView.ContentTemplate>
+                            <DataTemplate>
+                                <Grid BackgroundColor="White" Padding="15,0,15,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                        <RowDefinition Height="60"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition>
+                                            <RowDefinition.Height>
+                                                <OnPlatform x:TypeArguments="GridLength" Android="55" iOS="55">
+                                                    <On Platform="UWP" Value="75"/>
+                                                </OnPlatform>
+                                            </RowDefinition.Height>
+                                        </RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0" Margin="0,0,0,0">
+                                        <Entry Text="{Binding EventShortName}" Placeholder="Nazwa zajęć" MaxLength="40" Margin="0,0,0,0" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="1" Margin="0,0,0,0">
+                                        <Entry Text="{Binding EventRoomNumber}" Placeholder="Sala" MaxLength="2" Margin="0,0,0,0" />
+                                    </Grid>
+
+                                    <Label Grid.Row="2" Text="Od" Margin="5,0,0,0"/>
+                                    <Grid Grid.Row="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <DatePicker Date ="{Binding EventFromDate}"  Grid.Column="0" FontSize="Small" Format="dd.MM.yyyy" />
+                                        <TimePicker Time ="{Binding EventFromTime}"  Grid.Column="1" FontSize="Small" Format="HH:mm"/>
+                                    </Grid>
+
+                                    <Label Grid.Row="4" Text="Do" Margin="5,0,0,0"/>
+                                    <Grid Grid.Row="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <DatePicker Date ="{Binding EventToDate}"  Grid.Column="0" FontSize="Small" Format="dd.MM.yyyy"/>
+                                        <TimePicker Time ="{Binding EventToTime}"  Grid.Column="1" FontSize="Small" Format="HH:mm"/>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </popuplayout:PopupView.ContentTemplate>
+                    </popuplayout:PopupView>
+                </popuplayout:SfPopupLayout.PopupView>
+                </popuplayout:SfPopupLayout>
+                
+                <!--Preview popup layout-->
+
+                <popuplayout:SfPopupLayout x:Name="popupLayoutPreview">
+                <popuplayout:SfPopupLayout.PopupView >
+                    <popuplayout:PopupView AppearanceMode="{Binding AppearanceMode, Mode=OneWay}"
+                                           AcceptButtonText="{Binding AcceptButtonText, Mode=OneWay}"
+                                           DeclineButtonText="{Binding CancelButtonText, Mode=OneWay}"
+                                           HeaderHeight="50"
+                                           AutoSizeMode="Height"
+                                           IsFullScreen="True"
+                                           ShowCloseButton="False">
+                        <!--<popuplayout:PopupView.HeaderTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Title, Mode=OneWay}"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" TextColor="#2196F3"/>
+                            </DataTemplate>
+                        </popuplayout:PopupView.HeaderTemplate>-->
+                        <popuplayout:PopupView.ContentTemplate>
+                            <DataTemplate>
+                                <Grid BackgroundColor="White" Padding="15,0,15,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition>
+                                            <RowDefinition.Height>
+                                                <OnPlatform x:TypeArguments="GridLength" Android="55" iOS="55">
+                                                    <On Platform="UWP" Value="75"/>
+                                                </OnPlatform>
+                                            </RowDefinition.Height>
+                                        </RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Text="Nazwa" Margin="5,0,0,0"/>
+                                    <Grid Grid.Row="1" Margin="0,0,0,0">
+                                        <Label Text ="{Binding EventShortName}" IsEnabled="false" TextColor="Black"/>
+                                    </Grid>
+
+                                    <Label Grid.Row="2" Text="Sala" Margin="5,0,0,0"/>
+                                    <Grid Grid.Row="3" Margin="0,0,0,0">
+                                        <Label Text ="{Binding EventRoomNumber}" IsEnabled="false" TextColor="Black"/>
+                                    </Grid>
+
+                                    <Label Grid.Row="4" Text="Prowadzący" Margin="5,0,0,0"/>
+                                    <Grid Grid.Row="5" Margin="0,0,0,0">
+                                        <Label Text ="{Binding EventEmployee.FullName}" IsEnabled="false" TextColor="Black"/>
+                                    </Grid>
+
+                                    <Label Grid.Row="6" Text="Od" Margin="5,0,0,0"/>
+                                    <Grid Grid.Row="7">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <DatePicker Date ="{Binding EventFromDate}" IsEnabled="False" Grid.Column="0" FontSize="Small" Format="dd.MM.yyyy" />
+                                        <TimePicker Time ="{Binding EventFromTime}" IsEnabled="False" Grid.Column="1" FontSize="Small" Format="HH:mm"/>
+                                    </Grid>
+
+                                    <Label Grid.Row="8" Text="Do" Margin="5,0,0,0"/>
+                                    <Grid Grid.Row="9">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <DatePicker Date ="{Binding EventToDate}"  IsEnabled="False" Grid.Column="0" FontSize="Small" Format="dd.MM.yyyy"/>
+                                        <TimePicker Time ="{Binding EventToTime}"  IsEnabled="False" Grid.Column="1" FontSize="Small" Format="HH:mm"/>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </popuplayout:PopupView.ContentTemplate>
+                    </popuplayout:PopupView>
+                </popuplayout:SfPopupLayout.PopupView>
+                <!--calendar-->
+                </popuplayout:SfPopupLayout>
+                <schedule:SfSchedule x:Name="schedule" 
+                                 ScheduleView ="MonthView" 
+                                 ShowAppointmentsInline="True" 
+                                 FirstDayOfWeek="2" 
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Locale="pl"
+                                 BackgroundColor="Black">
+                <schedule:SfSchedule.HeaderStyle>
+                    <schedule:HeaderStyle
+			            TextColor="Black" 
+                        FontAttributes="Bold" 
+			            FontFamily="Arial"/>
+                </schedule:SfSchedule.HeaderStyle>
+                <schedule:SfSchedule.WeekViewSettings>
+                        <schedule:WeekViewSettings
+                            StartHour="06.0"
+                            EndHour="20.0"
+                            WorkStartHour="06.0"
+                            WorkEndHour="20.5">
+                            <schedule:WeekViewSettings.WeekLabelSettings>
+                                <schedule:WeekLabelSettings TimeFormat="HH:mm" />
+                            </schedule:WeekViewSettings.WeekLabelSettings>
+                        </schedule:WeekViewSettings>
+                    </schedule:SfSchedule.WeekViewSettings>
+                    <schedule:SfSchedule.DayViewSettings>
+                        <schedule:DayViewSettings
+                            StartHour="06.0"
+                            EndHour="20.0"
+                            WorkStartHour="06.0"
+                            WorkEndHour="20.5">
+                            <schedule:DayViewSettings.DayLabelSettings>
+                                <schedule:DayLabelSettings TimeFormat="HH:mm" />
+                            </schedule:DayViewSettings.DayLabelSettings>
+                        </schedule:DayViewSettings>
+                    </schedule:SfSchedule.DayViewSettings>
+                <schedule:SfSchedule.SelectionStyle>
+                    <schedule:SelectionStyle 
+			           BorderColor="Black" 
+			           BorderThickness="5" 
+			           BorderCornerRadius="5">
+                    </schedule:SelectionStyle>
+                </schedule:SfSchedule.SelectionStyle>
+            </schedule:SfSchedule>
+            <!--<FlexLayout Direction="Row" AlignItems="Stretch" BackgroundColor="White">
+                <Button
+                    x:Name="buttonDay"
+                    ImageSource="day.png"
+                    WidthRequest="150"
+                    HeightRequest="70"
+                    BackgroundColor="#2196F3"
+                    Clicked="buttonDay_Clicked"
+                    Margin="0,0,1,0"
+                    />
+                <Button
+                    x:Name="buttonWeek"
+                    ImageSource="week.png"
+                    WidthRequest="150"
+                    HeightRequest="70"
+                    BackgroundColor="#2196F3"
+                    Margin="0,0,1,0"
+                    Clicked="buttonWeek_Clicked"
+                    />
+                <Button
+                    x:Name="buttonMonth"
+                    ImageSource="month.png"
+                    WidthRequest="150"
+                    HeightRequest="70"
+                    BackgroundColor="#2196F3"
+                    Clicked="buttonMonth_Clicked"
+                    />
+            </FlexLayout>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

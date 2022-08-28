@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AMINI.Menu"
+             NavigationPage.HasNavigationBar="false"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="#2196F3" Padding="-10" CornerRadius="0">
+                <Image Source="logoamini.png"/>
+            </Frame>
+            <StackLayout Padding="30,30,30,0" Spacing="30" >
+                <Button TextTransform="None"
+                        Text="Kalendarz"
+                        BorderColor="Black"
+                        BorderWidth="3" 
+                        x:Name="CalendarButton"
+                        Clicked="CalendarButton_Clicked"
+                        HeightRequest ="60"
+                        FontSize="20"
+                        BackgroundColor="#2196F3" 
+                        FontAttributes="Bold"
+                        CornerRadius="8"/>
+                <Button TextTransform="None"
+                        Text="Moje zajęcia"
+                        BorderColor="Black"
+                        BorderWidth="3" 
+                        x:Name="EmployeeEventsButton"
+                        Clicked="EmployeeEventsButton_Clicked"
+                        HeightRequest ="60"
+                        FontSize="20"
+                        BackgroundColor="#2196F3" 
+                        FontAttributes="Bold"
+                        CornerRadius="8"/>
+                <Button TextTransform="None"
+                        Text="Klienci"
+                        BorderColor="Black"
+                        BorderWidth="3" 
+                        x:Name="ClientButton"
+                        Clicked="ClientButton_Clicked"
+                        HeightRequest ="60"
+                        FontSize="20"
+                        BackgroundColor="#2196F3" 
+                        FontAttributes="Bold"
+                        CornerRadius="8"/>
+            </StackLayout>
+            <!--<FlexLayout Direction="Column" AlignItems="Stretch" Padding="30,10,30,0" BackgroundColor="#FFFFFF" >
+                
+            </FlexLayout>-->
+            <Frame VerticalOptions="EndAndExpand" Padding="30,0,30,20" BackgroundColor="#FFFFFF">
+                <Button TextTransform="None"
+                        Text="Wyloguj się"
+                        BorderColor="Black"
+                        BorderWidth="3" 
+                        x:Name="LogOutButton"
+                        Clicked="LogOutButton_Clicked"
+                        Margin="0,10,0,0"
+                        HeightRequest ="60"
+                        FontSize="20"
+                        BackgroundColor="#2196F3" 
+                        FontAttributes="Bold"
+                        VerticalOptions="EndAndExpand"
+                        CornerRadius="8"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

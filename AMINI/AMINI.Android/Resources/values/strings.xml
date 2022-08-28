@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <string name="No_Appointments">Brak zajęć</string>
+  <string name="No_Resources">Brak zasobów</string>
+</resources>

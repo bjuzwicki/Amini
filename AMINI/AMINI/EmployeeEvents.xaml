@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:popuplayout="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:maskededit="clr-namespace:Syncfusion.XForms.MaskedEdit;assembly=Syncfusion.SfMaskedEdit.XForms"
+             x:Class="AMINI.EmployeeEvents"
+             Title="Moje zajęcia">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="plus.png" Order="Primary" Clicked="DefineEventButton_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <listview:SfListView x:Name="listView" ItemsSource="{Binding Employee.Events}" AutoFitMode="Height" AllowSwiping="True" ItemTapped="listView_ItemTapped">
+                <listview:SfListView.RightSwipeTemplate>
+                    <DataTemplate x:Name="RightSwipeTemplate">
+                        <Grid>
+                            <Grid BackgroundColor="Red" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Grid.Column="0" Grid.Row="0" BackgroundColor="Transparent" HeightRequest="50" WidthRequest="50" Source="trashcan.png" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </listview:SfListView.RightSwipeTemplate>
+                <listview:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="Black" Padding="0,0,0,2">
+                            <Grid Padding="14,10,0,14" BackgroundColor="White" RowDefinitions="7*,0" ColumnDefinitions="3*,1.5*" ColumnSpacing="20">
+                                <Label Text= "{Binding Name}" FontAttributes="Bold" TextColor="Black" FontSize="18" LineBreakMode="WordWrap"/>
+                                <Label Grid.Column="1" Text = "{Binding Room, StringFormat='Sala {0}'}" FontAttributes="Bold" TextColor="Black" FontSize="18"/>
+                                <Label Grid.Column="1" Grid.Row="2" Text = "Klienci: 55" FontAttributes="Bold" TextColor="Black" FontSize="18"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </listview:SfListView.ItemTemplate>
+            </listview:SfListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

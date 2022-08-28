@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:popuplayout="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             x:Class="AMINI.ClientList"
+             Title="Lista klientów">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="plus.png" Order="Primary" Clicked="NewClient_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <listview:SfListView x:Name="listView"
+                                 ItemSize="100" 
+                                 BackgroundColor="White" 
+                                 AllowSwiping="True"
+                                 SelectionBackgroundColor="Black"
+                                 ItemTapped="listView_ItemTapped"
+                                 >
+                <!--<listview:SfListView.RightSwipeTemplate>
+                    <DataTemplate x:Name="RightSwipeTemplate">
+                        <Grid>
+                            <Grid BackgroundColor="#009EDA" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Grid.Column="0" Grid.Row="0" BackgroundColor="Transparent" HeightRequest="100" WidthRequest="100" Source="logoamini2.png" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </listview:SfListView.RightSwipeTemplate>-->
+                <listview:SfListView.ItemTemplate>
+                    <DataTemplate >
+                        <Frame BackgroundColor="Black" Padding="0,0,0,2">
+                            <Grid BackgroundColor="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="1.5*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text ="{Binding FullName}" FontAttributes="Bold" TextColor="Black" FontSize="18" LineBreakMode="WordWrap" Padding="14,10,0,0"/>
+                                <Label Grid.Column="1" Text="{Binding PhoneNumber, StringFormat='Tel. {0}'}" FontAttributes="Bold" TextColor="Black" FontSize="18" Padding="0,10,0,0"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text ="Liczba zajęć: 12" FontAttributes="Bold" TextColor="Black" FontSize="18" LineBreakMode="WordWrap" Padding="0,0,0,0"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </listview:SfListView.ItemTemplate>
+            </listview:SfListView>
+            <!--Edit popup layout-->
+
+            <popuplayout:SfPopupLayout x:Name="popupLayoutEdit">
+                <popuplayout:SfPopupLayout.PopupView >
+                    <popuplayout:PopupView AppearanceMode="{Binding AppearanceMode, Mode=OneWay}"
+                                           AcceptButtonText="{Binding AcceptButtonText, Mode=OneWay}"
+                                           DeclineButtonText="{Binding CancelButtonText, Mode=OneWay}"
+                                           ShowHeader="False"
+                                           AutoSizeMode="Height"
+                                           ShowCloseButton="False">
+                        <!--<popuplayout:PopupView.HeaderTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Title, Mode=OneWay}"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" TextColor="#2196F3"/>
+                            </DataTemplate>
+                        </popuplayout:PopupView.HeaderTemplate>-->
+                        <popuplayout:PopupView.ContentTemplate>
+                            <DataTemplate>
+                                <Grid BackgroundColor="White" Padding="15,0,15,0" RowDefinitions="60,60,60" ColumnDefinitions="*" RowSpacing="20" IsEnabled="{Binding IsEditing}">
+                                    <inputLayout:SfTextInputLayout Hint="Imię" ContainerType="Outlined" OutlineCornerRadius="8" UnfocusedColor="Black">
+                                        <Entry Keyboard="Text" Text="{Binding Client.FirstName}" MaxLength="20"/>
+                                    </inputLayout:SfTextInputLayout>
+                                    <inputLayout:SfTextInputLayout Grid.Row="1" Hint="Nazwisko" ContainerType="Outlined" OutlineCornerRadius="8" UnfocusedColor="Black">
+                                        <Entry Keyboard="Text" Text="{Binding Client.LastName}" MaxLength="20"/>
+                                    </inputLayout:SfTextInputLayout>
+                                    <inputLayout:SfTextInputLayout Grid.Row="2" Hint="Numer telefonu" ContainerType="Outlined" OutlineCornerRadius="8" UnfocusedColor="Black">
+                                        <Entry Keyboard="Telephone" Text="{Binding Client.PhoneNumber}" MaxLength="15"/>
+                                    </inputLayout:SfTextInputLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </popuplayout:PopupView.ContentTemplate>
+                    </popuplayout:PopupView>
+                </popuplayout:SfPopupLayout.PopupView>
+            </popuplayout:SfPopupLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
